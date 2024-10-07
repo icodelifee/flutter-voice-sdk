@@ -19,7 +19,9 @@ dependencies:
   mockito: ^5.2.0
   build_runner: ^2.2.0
   audioplayers: ^5.2.1
-  assets_audio_player: ^3.1.1
+  assets_audio_player:
+    git:
+      url: https://github.com/arthas1888/Flutter-AssetsAudioPlayer.git
   shared_preferences: ^2.2.3
 
 dev_dependencies:
