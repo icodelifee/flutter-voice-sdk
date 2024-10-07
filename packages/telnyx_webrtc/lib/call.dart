@@ -1,23 +1,20 @@
 import 'dart:convert';
 
-import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:telnyx_webrtc/model/jsonrpc.dart';
 import 'package:telnyx_webrtc/telnyx_client.dart';
+import 'package:telnyx_webrtc/tx_socket.dart' if (dart.library.js) 'package:telnyx_webrtc/tx_socket_web.dart';
+import 'package:uuid/uuid.dart';
 
 import '/model/socket_method.dart';
 import '/model/verto/receive/received_message_body.dart';
-import '/model/verto/send/send_bye_message_body.dart';
 import '/model/verto/send/info_dtmf_message_body.dart';
 import '/model/verto/send/invite_answer_message_body.dart';
 import '/model/verto/send/modify_message_body.dart';
+import '/model/verto/send/send_bye_message_body.dart';
 import '/peer/peer.dart' if (dart.library.html) '/web/peer.dart';
-import 'package:telnyx_webrtc/tx_socket.dart'
-    if (dart.library.js) 'package:telnyx_webrtc/tx_socket_web.dart';
-import 'package:uuid/uuid.dart';
-import 'package:audioplayers/audioplayers.dart';
-
 import 'model/call_state.dart';
 import 'model/gateway_state.dart';
 import 'model/telnyx_message.dart';
@@ -46,7 +43,7 @@ class Call {
   late CallState callState;
 
   final audioService = AudioService();
-  final mobileAudioPlayer = AssetsAudioPlayer.newPlayer();
+  // final mobileAudioPlayer = AssetsAudioPlayer.newPlayer();
   final Function callEnded;
   final TxSocket txSocket;
   final TelnyxClient _txClient;
@@ -228,11 +225,11 @@ class Call {
       audioService.playLocalFile(filePath);
       return;
     }
-    mobileAudioPlayer.open(
-      Audio(filePath),
-      autoStart: true,
-      showNotification: false,
-    );
+    // mobileAudioPlayer.open(
+    //   Audio(filePath),
+    //   autoStart: true,
+    //   showNotification: false,
+    // );
   }
 
   // Play ringtone for only web, iOS and Android will use native audio player
@@ -248,7 +245,7 @@ class Call {
       audioService.stopAudio();
       return;
     }
-    mobileAudioPlayer.stop();
+    // mobileAudioPlayer.stop();
   }
 }
 
